@@ -52,3 +52,4 @@ with open("/home/pi/WaterComsumptionPaipayales/data/tabla"+str(fechastr)+".csv",
 			#writer.writerows(dic2)
 			file.write(packet_text+","+str(ahora)+"\n")
 			print("se guardaron los registros")
+			file.close()

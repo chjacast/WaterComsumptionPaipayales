@@ -40,9 +40,9 @@ with open("/home/pi/WaterComsumptionPaipayales/data/tabla"+str(fechastr)+".csv",
 			enviar2 = requests.get("https://api.thingspeak.com/update?api_key=CPVEVA5ND36992WC&field2=0"+str(dato2))
 			if enviar.status_code==requests.codes.ok:
 				if enviar.text !="0":
-					print("datos enviado correctamente")
+					print("\ndatos enviado correctamente")
 				else:
-					print("tiempo de espera insuficiente")
+					print("\ntiempo de espera insuficiente")
 			else:
 				print("error en el request:",enviar.estatus_code)
 			

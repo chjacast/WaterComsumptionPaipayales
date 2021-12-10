@@ -22,7 +22,7 @@ ahora=datetime.now().replace(microsecond=0)
 fecha=date.today()
 fechastr=fecha.strftime("%Y-%m-%d")
 #print(fechastr)
-with open("/home/pi/paipayales/tabla"+str(fechastr)+".csv","w",newline="") as file : #Paipayales por cualquier carpeta de archivos a guardarse
+with open("/home/pi/WaterComsumptionPaipayales/data/tabla"+str(fechastr)+".csv","w",newline="") as file : #Paipayales por cualquier carpeta de archivos a guardarse
 	writer = csv.writer(file,delimiter=";")
 	writer.writerows(dic)
 	while True:
@@ -35,7 +35,7 @@ with open("/home/pi/paipayales/tabla"+str(fechastr)+".csv","w",newline="") as fi
 			print(packet_text)
 			dato1,dato2= packet_text.split(",")
 			sleep(5) #Tiempo de muestreo entre envíos
-			enviar = requests.get("ttps://api.thingspeak.com/update?api_key=1DZNPF3452WNRDQ9&field1=0"+str(dato1))
+                        enviar = requests.get("https://api.thingspeak.com/update?api_key=CPVEVA5ND36992WC&field1=0"+str(dato1))
 			sleep(5) #Tiempo de muestreo entre envíos
 			enviar2 = requests.get("https://api.thingspeak.com/update?api_key=CPVEVA5ND36992WC&field2=0"+str(dato2))
 			if enviar.status_code==requests.codes.ok:

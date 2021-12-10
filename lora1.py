@@ -35,7 +35,7 @@ with open("/home/pi/WaterComsumptionPaipayales/data/tabla"+str(fechastr)+".csv",
 			print(packet_text)
 			dato1,dato2= packet_text.split(",")
 			sleep(5) #Tiempo de muestreo entre envíos
-                        enviar = requests.get("https://api.thingspeak.com/update?api_key=CPVEVA5ND36992WC&field1=0"+str(dato1))
+			enviar = requests.get("https://api.thingspeak.com/update?api_key=CPVEVA5ND36992WC&field1=0"+str(dato1))
 			sleep(5) #Tiempo de muestreo entre envíos
 			enviar2 = requests.get("https://api.thingspeak.com/update?api_key=CPVEVA5ND36992WC&field2=0"+str(dato2))
 			if enviar.status_code==requests.codes.ok:

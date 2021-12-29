@@ -17,7 +17,7 @@ RESET = DigitalInOut(board.D25)
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
 rfm9x = adafruit_rfm9x.RFM9x(spi, CS, RESET, 915.0)
 prev_packet = None
-dic=[["flujo","caudal", "Error"]]
+dic=[["flujo","caudal"]]
 ahora=datetime.now().replace(microsecond=0)
 fecha=date.today()
 fechastr=fecha.strftime("%Y-%m-%d")
@@ -33,8 +33,7 @@ with open("/home/pi/WaterComsumptionPaipayales/data/tabla"+str(fechastr)+".csv",
 			prev_packet = packet
 			packet_text = str(prev_packet, "utf-8")
 			print(packet_text)
-			dato1,dato2,errores= packet_text.split(",")
-			print(errores)
+			dato1,dato2= packet_text.split(",")
 			sleep(5) #Tiempo de muestreo entre envíos
 			enviar = requests.get("https://api.thingspeak.com/update?api_key=CPVEVA5ND36992WC&field1=0"+str(dato1))
 			sleep(5) #Tiempo de muestreo entre envíos
@@ -51,6 +50,9 @@ with open("/home/pi/WaterComsumptionPaipayales/data/tabla"+str(fechastr)+".csv",
 			#with open("/home/pi/tabla.csv","w",newline="") as file :
 			#writer = csv.writer(file,delimiter=";")
 			#writer.writerows(dic2)
+			print(str(ahora))
+			print()
+			print(packet_text)
 			file.write(packet_text+","+str(ahora)+"\n")
 			print("se guardaron los registros")
 			
